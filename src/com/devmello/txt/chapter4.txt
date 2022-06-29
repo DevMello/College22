@@ -1,0 +1,129 @@
+Ex 4.17
+
+package com.devmello.chapter4.assignment417;
+
+import java.util.Scanner;
+/** Ex Assignment 4.17
+ * a Java application that will input the miles driven and gallons(both as integers) used and output the miles per gallon.
+ * Loop the program until the user types -1 to quit
+ * The program should calculate and display the miles per gallon obtained for each trip and print the combined miles per gallon obtained for all trips up to this point
+ * @author devmello
+ * 6/14/22
+ */
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int milesDriven = 0;
+        int gallonsUsed = 0;
+        int totalMilesDriven = 0;
+        int totalGallonsUsed = 0;
+        int totalMilesPerGallon = 0;
+        //ask for miles driven and gallons used
+        System.out.println("Enter miles driven (-1 to quit): ");
+        milesDriven = input.nextInt();
+        while (milesDriven != -1) {
+            System.out.println("Enter gallons used: ");
+            gallonsUsed = input.nextInt();
+            //calculate miles per gallon
+            int milesPerGallon = milesDriven / gallonsUsed;
+            //print miles per gallon
+            System.out.println("Miles per gallon: " + milesPerGallon);
+            //add miles driven and gallons used to total miles driven and total gallons used
+            totalMilesDriven += milesDriven;
+            totalGallonsUsed += gallonsUsed;
+            //calculate total miles per gallon
+            totalMilesPerGallon = totalMilesDriven / totalGallonsUsed;
+            //print total miles per gallon
+            System.out.println("Total miles per gallon: " + totalMilesPerGallon);
+            //ask for miles driven
+            System.out.println("Enter miles driven (-1 to quit): ");
+            milesDriven = input.nextInt();
+        }
+    }
+}
+
+run:
+Enter miles driven (-1 to quit): 
+180
+Enter gallons used: 
+90
+MPG: 2.00
+TMPG: 2.00
+Enter miles driven (-1 to quit): 
+100
+Enter gallons used: 
+4
+MPG: 25.00
+TMPG: 2.98
+Enter miles driven (-1 to quit): 
+260
+Enter gallons used: 
+60
+MPG: 4.33
+TMPG: 3.51
+Enter miles driven (-1 to quit): 
+-1
+
+Process finished with exit code 0
+
+
+
+Ex 4.20
+
+package com.devmello.chapter4.assignment420;
+
+import java.util.Scanner;
+
+/** Ex 4.20
+ * a Java application that determines the gross pay for each of three employees
+ * The company pays straight time for the first 40 hours worked by each employee and time and a half for all hours worked in excess of 40
+ * You’re given a list of the employees, their number of hours worked last week and their hourly rates
+ * Your program should input this information for each employee, then determine and display the employee’s gross pay
+ * Use class Scanner to input the data
+ * @author devmello
+ * 6/14/22
+ */
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int hoursWorked = 0;
+        double hourlyRate = 0;
+        double grossPay = 0;
+        int counter = 0;
+        while (counter < 3) {
+            System.out.println("Enter hours worked: ");
+            hoursWorked = input.nextInt();
+            System.out.println("Enter hourly rate: ");
+            hourlyRate = input.nextDouble();
+            if (hoursWorked <= 40) {
+                grossPay = hoursWorked * hourlyRate;
+            } else {
+                grossPay = 40 * hourlyRate + (hoursWorked - 40) * hourlyRate * 1.5;
+            }
+            counter++;
+            System.out.println("Gross pay for Employee "+counter +" is: " + String.format("%.2f", grossPay));
+        }
+    }
+}
+
+run:
+Enter hours worked: 
+20
+Enter hourly rate: 
+30
+Gross pay for Employee 1 is: 600.00
+Enter hours worked: 
+40
+Enter hourly rate: 
+50
+Gross pay for Employee 2 is: 2000.00
+Enter hours worked: 
+60
+Enter hourly rate: 
+70
+Gross pay for Employee 3 is: 4900.00
+
+Process finished with exit code 0
+

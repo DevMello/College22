@@ -1,0 +1,251 @@
+Ex 3.11
+Account.java
+package com.devmello.chapter3.assignment311;
+/** Ex Assignment #
+ * This program defines the Account class
+ * @author devmello
+ * 6/14/22
+ */
+public class Account {
+    private String name; // instance variable
+    private double balance; // instance variable
+
+    // Account constructor that receives two parameters
+    public Account(String name, double balance) {
+        this.name = name; // assign name to instance variable name
+        // validate that the balance is greater than 0.0; if it's not,
+        // instance variable balance keeps its default initial value of 0.0
+        if (balance > 0.0) { // if the balance is valid
+            this.balance = balance; // assign it to instance variable balance
+        }
+    }
+
+    // method that deposits (adds) only a valid amount to the balance
+    public void deposit(double depositAmount) {
+        if (depositAmount > 0.0) { // if the depositAmount is valid
+            balance = balance + depositAmount; // add it to the balance
+        }
+    }
+
+    // method returns the account balance
+    public double getBalance() {
+        return balance;
+    }
+
+    // method that sets the name
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    // method that returns the name
+    public String getName() {
+        return name;
+    }
+
+    // method that withdraws only a valid amount from the balance
+    // if the balance is less than the withdrawal amount, the balance should be left alone and the method should print a message indicating "Withdrawal amount exceeded account balance."
+    public void withdraw(double withdrawalAmount) {
+        if (withdrawalAmount > balance) {
+            System.out.println("Withdrawal amount exceeded account balance.");
+        } else if (withdrawalAmount > 0.0) {
+            balance = balance - withdrawalAmount;
+        }
+    }
+}
+
+AccountTest.java
+package com.devmello.chapter3.assignment311;
+
+import java.util.Scanner;
+/** Ex Assignment #
+ * This program tests the Account class
+ * @author devmello
+ * 6/14/22
+ */
+public class AccountTest {
+    public static void main(String[] args) {
+        Account account1 = new Account("Jane Green", 50.00);
+        Account account2 = new Account("John Blue", -7.53);
+        // display initial balance of each object
+         System.out.printf("%s balance: $%.2f%n",
+            account1.getName(), account1.getBalance());
+         System.out.printf("%s balance: $%.2f%n%n",
+            account2.getName(), account2.getBalance());
+         // create a Scanner to obtain an amount to withdraw from the command window
+        Scanner input2 = new Scanner(System.in);
+        System.out.print("Enter withdrawal amount for account1: "); // prompt
+        double withdrawalAmount = input2.nextDouble(); // obtain user input
+        System.out.printf("%nwithdrawing %.2f from account1 balance%n%n",
+             withdrawalAmount);
+        account1.withdraw(withdrawalAmount); // withdraw from account1’s balance
+        //do the same thing for account2
+        System.out.print("Enter withdrawal amount for account2: "); // prompt
+        withdrawalAmount = input2.nextDouble(); // obtain user input
+        System.out.printf("%nwithdrawing %.2f from account2 balance%n%n",
+                withdrawalAmount);
+        account2.withdraw(withdrawalAmount);
+        // display balances
+        System.out.printf("%s balance: $%.2f%n",
+            account1.getName(), account1.getBalance());
+        System.out.printf("%s balance: $%.2f%n%n",
+            account2.getName(), account2.getBalance());
+
+
+    }
+}
+
+run:
+Jane Green balance: $50.00
+John Blue balance: $0.00
+
+Enter withdrawal amount for account1: 40
+
+withdrawing 40.00 from account1 balance
+
+Enter withdrawal amount for account2: 10
+
+withdrawing 10.00 from account2 balance
+
+Withdrawal amount exceeded account balance.
+Jane Green balance: $10.00
+John Blue balance: $0.00
+
+
+
+Ex 3.12
+
+Invoice.java
+package com.devmello.chapter3.assignment312;
+/** Ex 3.12
+ * Defines the Invoice Class
+ * @author devmello
+ * 6/14/22
+ */
+public class Invoice {
+    private String partNumber;
+    private String partDescription;
+    private int quantity;
+    private double pricePerItem;
+
+    // create a constructor called Invoice that receives four parameters a part number (type String), a part description (type String), a quantity of the item being purchased (type int) and a price per item (double)
+    public Invoice(String partNumber, String partDescription, int quantity, double pricePerItem) {
+        this.partNumber = partNumber;
+        this.partDescription = partDescription;
+        this.quantity = quantity;
+        this.pricePerItem = pricePerItem;
+    }
+    // create a method called getInvoiceAmount that calculates the invoice amount (i.e., multiplies the quantity by the price per item), then returns the amount as a double value. If the quantity is not positive, it should be set to 0. If the price per item is not positive, it should be set to 0.0
+    public double getInvoiceAmount() {
+        if (quantity < 0) {
+            quantity = 0;
+        }
+        if (pricePerItem < 0) {
+            pricePerItem = 0.0;
+        }
+        return quantity * pricePerItem;
+    }
+
+    public String getPartNumber() {
+        return partNumber;
+    }
+
+}
+
+InvoiceTest.java
+package com.devmello.chapter3.assignment312;
+/** Ex 3.12
+ * Tests the Invoice class
+ * @author devmello
+ * 6/14/22
+ */
+public class InvoiceTest {
+
+    public static void main(String[] args) {
+        Invoice invoice1 = new Invoice("Amazon Gift Cards", "Amazon gift cards with a prepaid value of 10$", 100, 10.00);
+        Invoice invoice2 = new Invoice("Microsoft Gift Cards", "Microsoft gift cards with a prepaid value of 10$", -4, -10.00);
+        // print the invoice amount for each invoice
+        System.out.printf("%s Total balance: $%.2f%n",
+            invoice1.getPartNumber(), invoice1.getInvoiceAmount());
+        System.out.printf("%s Total balance: $%.2f%n%n",
+            invoice2.getPartNumber(), invoice2.getInvoiceAmount());
+    }
+}
+
+run:
+Amazon Gift Cards balance: $1000.00
+Microsoft Gift Cards balance: $0.00
+
+
+
+Ex 3.13
+
+Employee.java
+
+package com.devmello.chapter3.assignment313;
+/** Ex Assignment #
+ * Defines the Employee class
+ * @author devmello
+ * 6/14/22
+ */
+public class Employee {
+    private String firstName;
+    private String lastName;
+    private double salary;
+    //Provide a constructor that initializes the three instance variables.
+    public Employee(String firstName, String lastName, double salary) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.salary = salary;
+    }
+    //Provide a set and a get method for each instance variable. If the monthly salary is not positive, do not set its value.
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+    public String getFirstName() {
+        return firstName;
+    }
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+    public String getLastName() {
+        return lastName;
+    }
+    public void setSalary(double salary) {
+        if (salary > 0) {
+            this.salary = salary;
+        }
+    }
+    public double getSalary() {
+        return salary;
+    }
+}
+
+
+EmployeeTest.java
+
+package com.devmello.chapter3.assignment313;
+/** Ex 3.13
+ * testing the Employee class
+ * @author devmello
+ * 6/14/22
+ */
+public class EmployeeTest {
+    public static void main(String[] args) {
+        Employee employee = new Employee("John", "Smith", 1000.0);
+        Employee employee2 = new Employee("Jane", "Doe", 2000.0);
+        System.out.println("Employee 1: " + employee.getFirstName() + " " + employee.getLastName() + " " + employee.getSalary());
+        System.out.println("Employee 2: " + employee2.getFirstName() + " " + employee2.getLastName() + " " + employee2.getSalary());
+        employee.setSalary(employee.getSalary() * 1.1);
+        employee2.setSalary(employee2.getSalary() * 1.1);
+        System.out.println("Employee 1: " + employee.getFirstName() + " " + employee.getLastName() + " " + employee.getSalary());
+        System.out.println("Employee 2: " + employee2.getFirstName() + " " + employee2.getLastName() + " " + employee2.getSalary());
+
+    }
+}
+
+run:
+Employee 1: John Smith 1000.0
+Employee 2: Jane Doe 2000.0
+Employee 1: John Smith 1100.0
+Employee 2: Jane Doe 2200.0
+
