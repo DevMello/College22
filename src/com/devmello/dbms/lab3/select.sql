@@ -18,9 +18,13 @@ SELECT TOP 501 t.*
 FROM cis55_35.dbo.instructor t
 WHERE dept_name='Biology';
 
-SELECT TOP 501 t.*
-FROM cis55_35.dbo.instructor t
-ORDER BY salary
+SELECT TOP 1 t.salary
+FROM instructor t
+ORDER BY salary DESC
+
+SELECT TOP 1 t.salary, t.name
+FROM instructor t
+ORDER BY salary DESC
 
 DELETE FROM cis55_35.dbo.student
 WHERE dept_name='Biology';

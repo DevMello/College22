@@ -1,7 +1,7 @@
 import requests
 
 params = {
-    'access_key': '6c6eb19de4a20b0850111dd3ae28d98a',
+    'access_key': '#####',
     'airline_name': 'Southwest Airlines',
     'flight_number': '2146',
 }
